@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Search as SearchIcon,
   Bookmark as BookmarkIcon,
@@ -7,6 +9,17 @@ import {
 import { Box, Typography, FilledInput, IconButton } from "@material-ui/core";
 
 const Home = () => {
+  const [word, setWord] = useState("");
+  const history = useHistory();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formattedWord = word.trim();
+    if (!formattedWord || formattedWord.split(" ").length > 1) return;
+
+    history.push(`/search/${formattedWord}`);
+  };
+
   return (
     <Box
       sx={{
@@ -20,28 +33,32 @@ const Home = () => {
       <img src="/assets/meditation.png" alt="boy-reading-a-book" />
 
       <Typography color="primary" sx={{ mb: 1 }} variant="h4">
-        Dictionary
+        Hummingbird
       </Typography>
       <Typography color="GrayText">
         Find meanings and save for quick reference
       </Typography>
       <Box sx={{ width: "360px" }}>
-        <FilledInput
-          disableUnderline
-          placeholder="search word"
-          sx={{
-            mt: 2,
-            mb: 4,
-            backgroundColor: "white",
-            borderRadius: 2,
-            boxShadow: "0px 10px 35px rgba(0, 0, 0, 0.05)",
-            "& .MuiFilledInput-input": {
-              p: 2,
-            },
-          }}
-          startAdornment={<SearchIcon color="disabled" />}
-          fullWidth
-        />
+        <form onSubmit={handleSubmit}>
+          <FilledInput
+            value={word}
+            onChange={(event) => setWord(event.target.value)}
+            disableUnderline
+            placeholder="search word"
+            sx={{
+              mt: 2,
+              mb: 4,
+              backgroundColor: "white",
+              borderRadius: 2,
+              boxShadow: "0px 10px 35px rgba(0, 0, 0, 0.05)",
+              "& .MuiFilledInput-input": {
+                p: 2,
+              },
+            }}
+            startAdornment={<SearchIcon color="disabled" />}
+            fullWidth
+          />
+        </form>
       </Box>
       <IconButton
         sx={{
