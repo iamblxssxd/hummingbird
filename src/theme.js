@@ -8,10 +8,14 @@ export default createTheme({
     primary: {
       main: "#006AAD",
     },
+    sunray: "#EDAB43",
   },
   typography: {
     fontFamily: "Mulish, sans-serif",
     h4: {
+      fontWeight: 800,
+    },
+    h5: {
       fontWeight: 800,
     },
   },

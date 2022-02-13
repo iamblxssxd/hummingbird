@@ -14,7 +14,7 @@ const Home = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formattedWord = word.trim();
+    const formattedWord = word.trim().toLowerCase();
     if (!formattedWord || formattedWord.split(" ").length > 1) return;
 
     history.push(`/search/${formattedWord}`);
@@ -36,7 +36,7 @@ const Home = () => {
         Hummingbird
       </Typography>
       <Typography color="GrayText">
-        Find meanings and save for quick reference
+        Look up definitions and save for quick reference
       </Typography>
       <Box sx={{ width: "360px" }}>
         <form onSubmit={handleSubmit}>
