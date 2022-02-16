@@ -1,6 +1,14 @@
 import { React, useEffect, useState, Fragment } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { Stack, Typography, Box, IconButton, Divider } from "@material-ui/core";
+import {
+  Stack,
+  Typography,
+  Box,
+  IconButton,
+  Divider,
+  CircularProgress,
+  useTheme,
+} from "@material-ui/core";
 import {
   ArrowBackIosNewRounded as BackIcon,
   BookmarkBorderRounded as BookmarkIcon,
@@ -13,6 +21,8 @@ const Definition = () => {
   const { word } = useParams();
   const history = useHistory();
   const [definitions, setDefinitions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const theme = useTheme();
 
   console.log(definitions);
 
@@ -22,10 +32,18 @@ const Definition = () => {
         `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
       );
       setDefinitions(response.data);
+      setLoading(false);
     };
 
     fetchDefinition();
   }, []);
+
+  if (loading)
+    return (
+      <Box sx={{ ...theme.mixins.alignCenter }}>
+        <CircularProgress />
+      </Box>
+    );
 
   return (
     <>

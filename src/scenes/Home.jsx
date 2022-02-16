@@ -5,11 +5,17 @@ import {
   Search as SearchIcon,
   Bookmark as BookmarkIcon,
 } from "@material-ui/icons";
-
-import { Box, Typography, FilledInput, IconButton } from "@material-ui/core";
+import {
+  Box,
+  Typography,
+  FilledInput,
+  IconButton,
+  useTheme,
+} from "@material-ui/core";
 
 const Home = () => {
   const [word, setWord] = useState("");
+  const theme = useTheme();
   const history = useHistory();
 
   const handleSubmit = (event) => {
@@ -23,11 +29,7 @@ const Home = () => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "70vh",
+        ...theme.mixins.alignCenter,
       }}
     >
       <img src="/assets/meditation.png" alt="boy-reading-a-book" />
