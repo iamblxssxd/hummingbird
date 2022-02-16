@@ -18,5 +18,8 @@ export default createTheme({
     h5: {
       fontWeight: 800,
     },
+    subtitle1: {
+      fontWeight: 800,
+    },
   },
 });
