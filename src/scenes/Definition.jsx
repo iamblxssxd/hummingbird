@@ -18,7 +18,7 @@ import {
 } from "@material-ui/icons";
 import axios from "axios";
 
-const Definition = () => {
+const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
   const { word } = useParams();
   const history = useHistory();
   const [definitions, setDefinitions] = useState([]);
@@ -26,7 +26,7 @@ const Definition = () => {
   const [pronunciation, setPronunciation] = useState(null);
   const theme = useTheme();
 
-  console.log(definitions);
+  const isBookmarked = Object.keys(bookmarks).includes(word);
 
   useEffect(() => {
     const fetchDefinition = async () => {
@@ -36,6 +36,8 @@ const Definition = () => {
         );
         const phonetics = response.data[0].phonetics;
         setDefinitions(response.data);
+
+        // TODO add validation for when audio url is an empty string
         if (!phonetics.length) return;
         const url = phonetics[0].audio.replace("//ssl", "https://ssl");
         setPronunciation(new Audio(url));
@@ -71,8 +73,20 @@ const Definition = () => {
         <IconButton onClick={history.goBack}>
           <BackIcon sx={{ color: "black" }} />
         </IconButton>
-        <IconButton>
-          <BookmarkIcon sx={{ color: "black" }} />
+        <IconButton
+          onClick={() =>
+            isBookmarked ? removeBookmark(word) : addBookmark(word, definitions)
+          }
+        >
+          {isBookmarked ? (
+            <BookmarkAddedIcon
+              sx={{
+                color: "#EDAB43",
+              }}
+            />
+          ) : (
+            <BookmarkIcon sx={{ color: "black" }} />
+          )}
         </IconButton>
       </Stack>
       <Stack
