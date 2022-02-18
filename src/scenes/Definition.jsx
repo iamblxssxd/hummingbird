@@ -22,8 +22,8 @@ const Definition = () => {
   const { word } = useParams();
   const history = useHistory();
   const [definitions, setDefinitions] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [exist, setExist] = useState(true);
+  const [pronunciation, setPronunciation] = useState(null);
   const theme = useTheme();
 
   console.log(definitions);
@@ -34,8 +34,11 @@ const Definition = () => {
         const response = await axios.get(
           `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
         );
+        const phonetics = response.data[0].phonetics;
         setDefinitions(response.data);
-        setLoading(false);
+        if (!phonetics.length) return;
+        const url = phonetics[0].audio.replace("//ssl", "https://ssl");
+        setPronunciation(new Audio(url));
       } catch (err) {
         setExist(false);
       }
@@ -55,7 +58,7 @@ const Definition = () => {
       </Box>
     );
 
-  if (loading)
+  if (!definitions.length)
     return (
       <Box sx={{ ...theme.mixins.alignCenter }}>
         <CircularProgress />
@@ -91,19 +94,22 @@ const Definition = () => {
         <Typography sx={{ textTransform: "capitalize" }} variant="h5">
           {word}
         </Typography>
-        <IconButton
-          sx={{
-            borderRadius: 3,
-            p: 1,
-            color: "#006AAD",
-            background: "#AFD9F3",
-            "&:hover": {
-              backgroundColor: "#d0ebfc",
-            },
-          }}
-        >
-          <PlayIcon />
-        </IconButton>
+        {pronunciation && (
+          <IconButton
+            onClick={() => pronunciation.play()}
+            sx={{
+              borderRadius: 3,
+              p: 1,
+              color: "#006AAD",
+              background: "#AFD9F3",
+              "&:hover": {
+                backgroundColor: "#d0ebfc",
+              },
+            }}
+          >
+            <PlayIcon />
+          </IconButton>
+        )}
       </Stack>
 
       {definitions.map((definition, index) => (
@@ -111,7 +117,7 @@ const Definition = () => {
           <Divider sx={{ display: index === 0 ? "none" : "block", my: 3 }} />
           {definition.meanings.map((meaning) => (
             <Box
-              key={meaning.partOfSpeech}
+              key={Math.random()}
               sx={{
                 boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.05)",
                 backgroundColor: "fff",
