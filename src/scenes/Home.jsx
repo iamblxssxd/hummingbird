@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import {
   Search as SearchIcon,
-  Bookmark as BookmarkIcon,
+  BookmarksRounded as BookmarksIcon,
 } from "@material-ui/icons";
 import {
   Box,
@@ -23,7 +23,7 @@ const Home = () => {
     const formattedWord = word.trim().toLowerCase();
     if (!formattedWord || formattedWord.split(" ").length > 1) return;
 
-    history.push(`/search/${formattedWord}`);
+    history.push(`/search/${word}`);
   };
 
   return (
@@ -62,7 +62,10 @@ const Home = () => {
           />
         </form>
       </Box>
+
       <IconButton
+        to="/bookmarks"
+        component={Link}
         sx={{
           borderRadius: 2,
           p: 2,
@@ -75,7 +78,7 @@ const Home = () => {
           },
         }}
       >
-        <BookmarkIcon />
+        <BookmarksIcon />
       </IconButton>
     </Box>
   );

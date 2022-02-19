@@ -8,7 +8,13 @@ import Bookmarks from "./scenes/Bookmarks";
 import Definition from "./scenes/Definition";
 
 export const App = () => {
-  const [bookmarks, setBookmarks] = useState({});
+  const [bookmarks, setBookmarks] = useState(
+    JSON.parse(localStorage.getItem("bookmarks")) || {}
+  );
+
+  useEffect(() => {
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  }, [bookmarks]);
 
   console.log(bookmarks);
 
@@ -35,7 +41,7 @@ export const App = () => {
               <Home />
             </Route>
             <Route path="/bookmarks">
-              <Bookmarks />
+              <Bookmarks bookmarks={bookmarks} />
             </Route>
             <Route path="/search/:word">
               <Definition
