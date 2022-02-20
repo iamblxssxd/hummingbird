@@ -23,7 +23,7 @@ const Home = () => {
     const formattedWord = word.trim().toLowerCase();
     if (!formattedWord || formattedWord.split(" ").length > 1) return;
 
-    history.push(`/search/${word}`);
+    history.push(`/search/${formattedWord}`);
   };
 
   return (

@@ -28,25 +28,30 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
 
   const isBookmarked = Object.keys(bookmarks).includes(word);
 
+  const updateState = (data) => {
+    setDefinitions(data);
+    const phonetics = data[0].phonetics;
+
+    // TODO add validation for when audio url is an empty string
+    if (!phonetics.length) return;
+    const url = phonetics[0].audio.replace("//ssl", "https://ssl");
+    setPronunciation(new Audio(url));
+  };
+
   useEffect(() => {
     const fetchDefinition = async () => {
       try {
         const response = await axios.get(
           `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
         );
-        const phonetics = response.data[0].phonetics;
-        setDefinitions(response.data);
-
-        // TODO add validation for when audio url is an empty string
-        if (!phonetics.length) return;
-        const url = phonetics[0].audio.replace("//ssl", "https://ssl");
-        setPronunciation(new Audio(url));
+        updateState(response.data);
       } catch (err) {
         setExist(false);
       }
     };
 
-    fetchDefinition();
+    if (!isBookmarked) fetchDefinition();
+    else updateState(bookmarks[word]);
   }, []);
 
   if (!exist)
