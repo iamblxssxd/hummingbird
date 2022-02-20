@@ -32,8 +32,7 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
     setDefinitions(data);
     const phonetics = data[0].phonetics;
 
-    // TODO add validation for when audio url is an empty string
-    if (!phonetics.length) return;
+    if (!phonetics.length || !phonetics[0].audio) return;
     const url = phonetics[0].audio.replace("//ssl", "https://ssl");
     setPronunciation(new Audio(url));
   };
