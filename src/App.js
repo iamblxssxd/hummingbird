@@ -34,11 +34,7 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Grid
-        container
-        sx={{ p: 2, mt: { xs: 0, sm: 0 } }}
-        justifyContent="center"
-      >
+      <Grid container sx={{ mt: { xs: 0, sm: 0 } }} justifyContent="center">
         <Grid item xs={12} sm={8} md={5} lg={4}>
           <Router>
             <Route exact path="/">

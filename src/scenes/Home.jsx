@@ -35,8 +35,8 @@ const Home = () => {
       <Box
         component="img"
         sx={{
-          height: 600,
-          width: "auto",
+          height: { xs: "auto", xl: "auto" },
+          width: { xs: "100%", xl: "75%" },
         }}
         alt="boy-reading-a-book"
         src="/assets/meditation.png"
@@ -57,7 +57,7 @@ const Home = () => {
             placeholder="Search for a word"
             sx={{
               mt: 4,
-              mb: 4,
+              mb: 3,
               backgroundColor: "white",
               borderRadius: 2,
               boxShadow: "0px 10px 35px rgba(0, 0, 0, 0.05)",
@@ -77,6 +77,7 @@ const Home = () => {
         sx={{
           borderRadius: 2,
           p: 2,
+          mb: 5,
           color: "#fff",
           // background: "linear-gradient(287deg, #f6d961 1%,#458d4f 56%);",
           background: "#EDAB43",

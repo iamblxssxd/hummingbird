@@ -31,7 +31,7 @@ export default createTheme({
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      height: "70vh",
+      height: "72vh",
     },
   },
 });
