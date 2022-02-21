@@ -38,7 +38,7 @@ const Home = () => {
         Hummingbird
       </Typography>
       <Typography color="GrayText">
-        Look up definitions and save for quick reference
+        Look up definitions and save them for later
       </Typography>
       <Box sx={{ width: "360px" }}>
         <form onSubmit={handleSubmit}>
@@ -46,9 +46,9 @@ const Home = () => {
             value={word}
             onChange={(event) => setWord(event.target.value)}
             disableUnderline
-            placeholder="search word"
+            placeholder="Search for a word"
             sx={{
-              mt: 2,
+              mt: 4,
               mb: 4,
               backgroundColor: "white",
               borderRadius: 2,

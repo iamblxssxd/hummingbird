@@ -77,6 +77,19 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
         <IconButton onClick={history.goBack}>
           <BackIcon sx={{ color: "black" }} />
         </IconButton>
+        <Box
+          component="img"
+          sx={{
+            alignItems: "end",
+            height: 45,
+            width: "auto",
+
+            // maxHeight: { xs: 233, md: 167 },
+            // maxWidth: { xs: 350, md: 250 },
+          }}
+          alt="leaf arrow"
+          src="/assets/bookmarks-leafs.png"
+        />
         <IconButton
           onClick={() =>
             isBookmarked ? removeBookmark(word) : addBookmark(word, definitions)
