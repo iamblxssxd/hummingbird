@@ -32,7 +32,15 @@ const Home = () => {
         ...theme.mixins.alignCenter,
       }}
     >
-      <img src="/assets/meditation.png" alt="boy-reading-a-book" />
+      <Box
+        component="img"
+        sx={{
+          height: 600,
+          width: "auto",
+        }}
+        alt="boy-reading-a-book"
+        src="/assets/meditation.png"
+      />
 
       <Typography color="primary" sx={{ mb: 1 }} variant="h4">
         Hummingbird
