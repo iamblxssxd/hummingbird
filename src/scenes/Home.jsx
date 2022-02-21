@@ -77,7 +77,6 @@ const Home = () => {
         sx={{
           borderRadius: 2,
           p: 2,
-          mb: 5,
           color: "#fff",
           // background: "linear-gradient(287deg, #f6d961 1%,#458d4f 56%);",
           background: "#EDAB43",
