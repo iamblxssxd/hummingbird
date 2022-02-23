@@ -56,8 +56,16 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
   if (!exist)
     return (
       <Box sx={{ ...theme.mixins.alignCenter }}>
-        <img src="/assets/deadline.png" alt="boy-reading-a-book" />
-        <Typography>No Definitions Found</Typography>
+        <Box
+          component="img"
+          sx={{
+            height: { xs: "auto", xl: "auto" },
+            width: { xs: "100%", xl: "100%" },
+          }}
+          alt="students running"
+          src="/assets/deadline.png"
+        />
+        <Typography>No Definitions Found :(</Typography>
         <Button variant="text" sx={{ mt: 2 }} onClick={history.goBack}>
           Back
         </Button>
@@ -122,6 +130,7 @@ const Definition = ({ bookmarks, addBookmark, removeBookmark }) => {
           borderRadius: 2,
         }}
       >
+        {/* TODO Handle really long inputs on smaller screens*/}
         <Typography sx={{ textTransform: "capitalize" }} variant="h5">
           {word}
         </Typography>
