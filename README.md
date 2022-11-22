@@ -1,6 +1,6 @@
-# Hummingbird: <a href="#" target="_blank">Try it out here</a>
+# Hummingbird: <a href="https://hummingbird-iamblxssxd.vercel.app/" target="_blank">Try it out here</a>
 
-<a href="#" target="_blank"><img src="" /></a>
+<a href="https://hummingbird-iamblxssxd.vercel.app/" target="_blank"><img src="./hummingbird.gif" /></a>
 
 You can use Hummingbird to quickly add words to your list and check out their definitions and pronunciations later.
 
